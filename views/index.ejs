@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 80%;
+        max-width: 1200px;
+        margin: auto;
+        position: relative;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: white;
+      }
+
+      .slider-wrapper {
+        position: relative;
+        height: 400px;
+        margin: 2rem 0;
+        perspective: 1000px;
+      }
+
+      .card {
+        position: absolute;
+        width: 300px;
+        height: 350px;
+        left: 50%;
+        top: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+        padding: 1.5rem;
+        transition: all 0.5s ease;
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+        visibility: hidden;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .card.active {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+        z-index: 3;
+      }
+
+      .card.prev {
+        transform: translate(-150%, -50%) scale(0.7);
+        opacity: 0.6;
+        visibility: visible;
+        z-index: 2;
+      }
+
+      .card.next {
+        transform: translate(50%, -50%) scale(0.7);
+        opacity: 0.6;
+        visibility: visible;
+        z-index: 2;
+      }
+
+      .card.active:hover {
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+
+      .card-name {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: white;
+      }
+
+      .card-image {
+        width: 80%;
+        height: 150px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        margin: 1rem auto;
+      }
+
+      .card-message {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        color: white;
+        margin-top: 1rem;
+      }
+
+      .feedback-btn {
+        display: block;
+        width: fit-content;
+        margin: 2rem auto;
+        padding: 1rem 2rem;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
+
+      .feedback-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Mini Message Board</h1>
+      <div class="slider-wrapper">
+        <% messages.forEach((message) => { %>
+        <div class="card">
+          <div class="card-name"><%= message.user %></div>
+          <div class="card-metadata">
+            <span class="topic"><%= message.topic %></span>
+            <span class="date"><%= message.added.toLocaleString() %></span>
+          </div>
+          <div class="card-image"></div>
+          <div class="card-message"><%= message.text %></div>
+          <% if (message.email) { %>
+          <div class="card-email"><%= message.email %></div>
+          <% } %>
+        </div>
+        <% }); %>
+      </div>
+      <a href="/new" class="feedback-btn">Give Feedback</a>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".card");
+        let currentIndex = 1; // Start with middle card
+
+        const updateCards = () => {
+          cards.forEach((card, index) => {
+            card.className = "card";
+            if (index === currentIndex) {
+              card.classList.add("active");
+            } else if (index === (currentIndex + 1) % cards.length) {
+              card.classList.add("next");
+            } else if (
+              index ===
+              (currentIndex - 1 + cards.length) % cards.length
+            ) {
+              card.classList.add("prev");
+            }
+          });
+        };
+
+        setInterval(() => {
+          currentIndex = (currentIndex + 1) % cards.length;
+          updateCards();
+        }, 4000);
+
+        cards.forEach((card, index) => {
+          card.addEventListener("click", () => {
+            currentIndex = index;
+            updateCards();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message Board</title>
+    <style>
+      /* Global styles */
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: #fff;
+      }
+      form,
+      .optional-field {
+        width: 100%;
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Form Container */
+      .form-container {
+        background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+        border-radius: 15px;
+        padding: 2rem;
+        max-width: 600px; /* Set a maximum width */
+        width: 80%; /* Set width to 80% of the viewport */
+        min-width: 300px; /* Add a minimum width for smaller screens */
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+      }
+
+      /* Media Queries for smaller screens */
+      @media (max-width: 768px) {
+        .form-container {
+          padding: 1.5rem; /* Reduce padding on smaller screens */
+        }
+
+        .form-container h1 {
+          font-size: 1.5rem; /* Adjust heading size */
+        }
+
+        .form-container label {
+          font-size: 1rem; /* Adjust label size */
+        }
+      }
+
+      @media (max-width: 480px) {
+        .form-container {
+          padding: 1rem; /* Further reduce padding */
+        }
+
+        .form-container h1 {
+          font-size: 1.2rem; /* Further adjust heading size */
+        }
+
+        .form-container input,
+        .form-container textarea,
+        .form-container select {
+          width: 90%; /* Make the inputs take up 90% of the form width */
+          padding: 0.75rem;
+          margin-bottom: 1.25rem;
+          border: 2px solid #ccc;
+          border-radius: 8px;
+          font-size: 1rem;
+          background: rgba(255, 255, 255, 0.2);
+          color: #fff;
+          transition: all 0.3s ease;
+        }
+      }
+
+      /* Form heading */
+      .form-container h1 {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+      }
+
+      /* Input Fields */
+      .form-container input,
+      .form-container textarea,
+      .form-container select {
+        width: 90%; /* Take up full width within the form but no more than 80% of page */ /* Ensure the fields don’t stretch beyond form width */
+        padding: 0.75rem;
+        margin-bottom: 1.25rem;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        transition: all 0.3s ease;
+      }
+      .form-container input {
+        padding-left: -800px;
+      }
+
+      /* Make sure textarea doesn’t stretch out of form */
+      .form-container textarea {
+        resize: vertical;
+        max-height: 300px; /* Max height to avoid it stretching the page */
+        width: 90%; /* Take up full width within the form */
+      }
+
+      /* Focused input styles */
+      .form-container input[type="text"]:focus,
+      .form-container input[type="email"]:focus,
+      .form-container textarea:focus,
+      .form-container select:focus {
+        border-color: #007bff;
+        outline: none;
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Submit Button */
+      .form-container input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        padding: 0.75rem;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 50%;
+        transition: background-color 0.3s ease;
+      }
+
+      .form-container input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      /* Label and small text */
+      .form-container label {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: #fff;
+        display: block; /* Ensure the label is on its own line */
+      }
+
+      .form-container small {
+        color: #bbb;
+        font-size: 0.9rem;
+      }
+
+      .form-container span {
+        color: red;
+      }
+
+      /* Optional Fields */
+      .form-container .optional-field {
+        margin-top: 1.5rem;
+        font-size: 1rem;
+      }
+      .form-container {
+        width: 90%;
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      label {
+        color: white;
+        margin-bottom: 0.5rem;
+      }
+
+      input,
+      textarea,
+      select {
+        padding: 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      input[type="submit"] {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      input[type="submit"]:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .optional-field {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 1rem;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Post a Message</h1>
+      <form action="/new" method="POST">
+        <!-- Username (required) -->
+        <label for="username">Username <span>*</span></label>
+        <input
+          type="text"
+          id="username"
+          name="user"
+          placeholder="Enter your username"
+          required
+        />
+
+        <!-- Date (auto-filled, required) -->
+        <label for="date">Date <span>*</span></label>
+        <input
+          type="text"
+          id="date"
+          name="date"
+          value="<%= new Date().toLocaleString() %>"
+          readonly
+        />
+
+        <!-- Message (required) -->
+        <label for="message">Message <span>*</span></label>
+        <textarea
+          id="message"
+          name="text"
+          rows="5"
+          placeholder="Type your message here..."
+          required
+        ></textarea>
+
+        <!-- Optional Fields -->
+        <div class="optional-field">
+          <label for="email">Email (optional)</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+          />
+
+          <label for="topic">Topic (optional)</label>
+          <select id="topic" name="topic">
+            <option value="">Select a topic</option>
+            <option value="general">General</option>
+            <option value="feedback">Feedback</option>
+            <option value="help">Help</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>

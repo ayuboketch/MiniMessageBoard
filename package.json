@@ -1,0 +1,31 @@
+{
+  "name": "minimessageboard-",
+  "version": "1.0.0",
+  "description": "Mini Message Board Using Express",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayuboketch/MiniMessageBoard-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ayuboketch/MiniMessageBoard-/issues"
+  },
+  "homepage": "https://github.com/ayuboketch/MiniMessageBoard-#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "moongose": "^1.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.9",
+    "nvm": "^0.0.4",
+    "whatwg-url": "^14.1.0"
+  }
+}

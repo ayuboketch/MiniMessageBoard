@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f4f4f9;
+      }
+
+      .message-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        padding: 1.5em;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .message-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1em;
+      }
+
+      .back-to-messages {
+        margin-top: 1em;
+      }
+
+      a {
+        text-decoration: none;
+        color: #007bff;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="message-details">
+      <h1>Message Details</h1>
+      <div class="message-info">
+        <p><strong>From:</strong> <%= message.user %></p>
+        <p><strong>Message:</strong> <%= message.text %></p>
+        <p><strong>Added:</strong> <%= message.added.toLocaleString() %></p>
+      </div>
+      <div class="back-to-messages">
+        <a href="/">Back to messages</a>
+      </div>
+    </div>
+  </body>
+</html>
