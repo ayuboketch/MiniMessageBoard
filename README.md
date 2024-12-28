@@ -2,6 +2,10 @@
 
 A dynamic message board application featuring an interactive card slider and glass morphism design. Users can post messages, view feedback, and interact with a beautiful carousel-style interface.
 
+<img width="1672" alt="Screenshot 2024-12-28 at 18 43 13" src="https://github.com/user-attachments/assets/56da8c46-f4ce-4bf6-af90-58f7befd3ee1" />
+
+<img width="1672" alt="Screenshot 2024-12-28 at 18 43 51" src="https://github.com/user-attachments/assets/132ab6b5-bdf9-4188-b585-a41042bdeefd" />
+
 ## Features
 
 - Interactive card slider with smooth animations
@@ -19,7 +23,8 @@ A dynamic message board application featuring an interactive card slider and gla
 - **View Engine**: EJS (Embedded JavaScript)
 - **Frontend**: Vanilla JavaScript
 - **Styling**: Custom CSS with glass morphism effects
-- **Logging**: Morgan for HTTP request logging
+- **Logging**: Morgan for HTTP request logging<img width="1672" alt="Screenshot 2024-12-28 at 18 43 13" src="https://github.com/user-attachments/assets/9efcc1cf-8cc0-4235-9b35-646b0faf008e" />
+
 
 ## Prerequisites
 
