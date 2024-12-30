@@ -2,10 +2,11 @@
   "name": "minimessageboard-",
   "version": "1.0.0",
   "description": "Mini Message Board Using Express",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon app.js",
+    "build": "babel src -d dist" 
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,9 @@
   },
   "homepage": "https://github.com/ayuboketch/MiniMessageBoard-#readme",
   "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "build": "^0.1.4",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
@@ -26,6 +30,9 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.1.9",
     "nvm": "^0.0.4",
+    "pg": "^8.13.1",
+    "pnpm": "^9.15.2",
     "whatwg-url": "^14.1.0"
-  }
+  },
+  "keywords": []
 }
