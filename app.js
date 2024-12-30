@@ -3,15 +3,25 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
+const { Pool } = require('@neondatabase/serverless');
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    require: true
+  }
+});
+
 // View Engine
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // Messages array
 const messages = [
@@ -67,6 +77,8 @@ app.get("/messages/:id", (req, res) => {
 });
 
 // Start server
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
+
+module.exports = app;
