@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "build": "babel src -d dist" 
+    "build": "babel src -d dist"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "moongose": "^1.0.0",

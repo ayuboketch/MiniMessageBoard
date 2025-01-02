@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
+const { body, validationResult } = require("express-validator");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
